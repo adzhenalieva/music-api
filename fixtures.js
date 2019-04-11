@@ -4,6 +4,7 @@ const config = require('./config');
 const Artist = require('./models/Artist');
 const Album = require('./models/Album');
 const Track = require('./models/Track');
+const User = require('./models/User');
 
 const run = async () => {
     await mongoose.connect(config.dbURL, config.mongoOptions);
@@ -31,6 +32,11 @@ const run = async () => {
         {title: 'Eminem 2 song', album: albums[0]._id, duration: 5},
         {title: 'Usher song', album: albums[1]._id, duration: 4},
         {title: 'Usher 2 song', album: albums[1]._id, duration: 2.5}
+    );
+
+    await  User.create(
+        {username: 'Mila', password: "123"},
+        {username: 'Pasha', password: "123"}
     );
 
     await connection.close();

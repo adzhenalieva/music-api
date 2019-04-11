@@ -7,14 +7,23 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     if (req.query.album) {
-        Track.find({album: req.query.album})
+        Track.find({album: req.query.album}).populate('album')
             .then(result => {
                 if (result) return res.send(result);
                 res.sendStatus(404)
             })
             .catch(() => res.sendStatus(500));
-    } else {
-        Track.find()
+    }
+    else if (req.query.artist) {
+        Track.find({album:  req.query})
+            .then(result => {
+                if (result) return res.send(result);
+                res.sendStatus(404)
+            })
+            .catch(() => res.sendStatus(500));
+    }
+    else {
+        Track.find().populate('album')
             .then(tracks => {
                 res.send(tracks)
             }).catch(() => res.sendStatus(500))
