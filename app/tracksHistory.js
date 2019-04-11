@@ -4,18 +4,24 @@ const TrackHistory = require('../models/TrackHistory');
 
 const router = express.Router();
 
+router.get('/', (req, res) => {
+    TrackHistory.find()
+        .then(artists => res.send(artists))
+        .catch(() => res.sendStatus(500))
+});
 
-router.post('/', (req, res) => {
+router.post('/',  async (req, res) => {
     const trackHistory = new TrackHistory(req.body);
+    trackHistory.datetime = Date.now();
     let token = req.get('Token');
     if (!token) {
-       res.sendStatus(401);
+        res.sendStatus(401);
     }
-    trackHistory.datetime = Date.now();
+    trackHistory.user  = await res.redirect('/users/' + token);
+
+
     trackHistory.save()
         .then(result => res.send(result))
-        .catch(error => res.sendStatus(400).send(error));
-
 });
 
 

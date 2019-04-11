@@ -7,8 +7,8 @@ const router = express.Router();
 
 router.get('/:token', (req, res) => {
     User.findOne({token: req.param.token})
-        .then(results => res.send({user: results._id}))
-        .catch(() => res.sendStatus(500))
+        .then(result => res.json(result._id))
+        .catch(error => res.sendStatus(401).send(error))
 });
 
 router.post('/', (req, res) => {
