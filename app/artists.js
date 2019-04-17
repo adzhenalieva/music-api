@@ -19,8 +19,14 @@ const upload = multer({storage});
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    Artists.find()
+    Artists.find().sort({artist: 1})
         .then(artists => res.send(artists))
+        .catch(() => res.sendStatus(500))
+});
+
+router.get('/:id', (req, res) => {
+    Artists.findById(req.params.id)
+        .then(artist => res.send(artist))
         .catch(() => res.sendStatus(500))
 });
 

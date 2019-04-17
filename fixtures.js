@@ -23,21 +23,23 @@ const run = async () => {
     );
 
     const albums = await Album.create(
-        {title: 'Eminem show', year: 2008, artist: artists[0]._id, image: 'eminemAlbum.jpeg'},
-        {title: 'Usher show', year: 2011, artist: artists[1]._id, image: 'usherAlbum.jpg'}
+        {title: '8 mile', year: 2010, artist: artists[0]._id, image: 'eminemAlbum.jpeg'},
+        {title: 'Eminem show', year: 2008, artist: artists[0]._id, image: 'eminemAlbum2.jpeg'},
+        {title: 'Yeah', year: 2011, artist: artists[1]._id, image: 'usherAlbum.jpg'},
+        {title: 'Usher show', year: 2008, artist: artists[1]._id, image: 'usherAlbum2.jpeg'}
     );
 
-    const tracks = await Track.create(
-        {title: 'Eminem song', album: albums[0]._id, duration: 3},
-        {title: 'Eminem 2 song', album: albums[0]._id, duration: 5},
-        {title: 'Usher song', album: albums[1]._id, duration: 4},
-        {title: 'Usher 2 song', album: albums[1]._id, duration: 2.5}
+    await Track.create(
+        {title: '8 mile', album: albums[0]._id, duration: "3:52", number: 1},
+        {title: 'Love the way you lie', album: albums[0]._id, duration: "3:23", number: 2},
+        {title: 'Stan', album: albums[1]._id, duration: "3:45", number: 1},
+        {title: 'Recovery', album: albums[1]._id, duration: "3:00", number: 2},
+        {title: 'Black heart', album: albums[2]._id, duration: "3:52", number: 1},
+        {title: 'Yeah', album: albums[2]._id, duration: "2:52", number: 2},
+        {title: 'Burn', album: albums[3]._id, duration: "3:54", number: 1},
+        {title: 'I dont mind', album: albums[3]._id, duration: "3:54", number: 2}
     );
 
-    await  User.create(
-        {username: 'Mila', password: "123"},
-        {username: 'Pasha', password: "123"}
-    );
 
     await connection.close();
 };
