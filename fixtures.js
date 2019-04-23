@@ -4,7 +4,7 @@ const config = require('./config');
 const Artist = require('./models/Artist');
 const Album = require('./models/Album');
 const Track = require('./models/Track');
-const User = require('./models/User');
+
 
 const run = async () => {
     await mongoose.connect(config.dbURL, config.mongoOptions);
