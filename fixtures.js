@@ -30,14 +30,14 @@ const run = async () => {
     );
 
     await Track.create(
-        {title: 'Lose yourself', album: albums[0]._id, duration: "3:52", number: 1, link: "hhttps://www.youtube.com/embed/_Yhyp-_hX2s"},
-        {title: 'Love the way you lie', album: albums[0]._id, duration: "3:23", number: 2, link: "https://www.youtube.com/embed/uelHwf8o7_U"},
-        {title: 'Stan', album: albums[1]._id, duration: "3:45", number: 1, link: "https://www.youtube.com/embed/gOMhN-hfMtY"},
-        {title: 'Not afraid', album: albums[1]._id, duration: "3:00", number: 2, link: "https://www.youtube.com/embed/j5-yKhDd64s"},
-        {title: 'Crash', album: albums[2]._id, duration: "3:52", number: 1, link: "https://www.youtube.com/embed/fp_qAAi-T0E"},
-        {title: 'Yeah', album: albums[2]._id, duration: "2:52", number: 2, link: "https://www.youtube.com/embed/GxBSyx85Kp8"},
-        {title: 'Without you', album: albums[3]._id, duration: "3:54", number: 1, link: "https://www.youtube.com/embed/jUe8uoKdHao"},
-        {title: 'Burn', album: albums[3]._id, duration: "3:54", number: 2, link: "https://www.youtube.com/embed/t5XNWFw5HVw"}
+        {title: '8 mile', album: albums[0]._id, duration: "3:52", number: 1},
+        {title: 'Love the way you lie', album: albums[0]._id, duration: "3:23", number: 2},
+        {title: 'Stan', album: albums[1]._id, duration: "3:45", number: 1},
+        {title: 'Recovery', album: albums[1]._id, duration: "3:00", number: 2},
+        {title: 'Black heart', album: albums[2]._id, duration: "3:52", number: 1},
+        {title: 'Yeah', album: albums[2]._id, duration: "2:52", number: 2},
+        {title: 'Burn', album: albums[3]._id, duration: "3:54", number: 1},
+        {title: 'I dont mind', album: albums[3]._id, duration: "3:54", number: 2}
     );
 
 

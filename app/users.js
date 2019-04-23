@@ -35,7 +35,7 @@ router.post('/sessions', async (req, res) => {
 
     await user.save();
 
-    res.send({message: "Login success", user})
+    res.send({token: user.token})
 });
 
 
