@@ -1,24 +1,23 @@
 const express = require('express');
 const TrackHistory = require('../models/TrackHistory');
-const User = require("../models/User");
+const Album = require('../models/Album');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 
 
-router.post('/', async (req, res) => {
-    const token = req.get("Token");
+router.get('/', auth, async (req, res) => {
+    await TrackHistory.find({user: req.user._id}).populate({path: 'track', populate: {path: 'album', populate: {path: 'artist'}}}).sort({datetime: -1})
+        .then(results => res.send(results))
+        .catch(() => res.sendStatus(500))
 
-    if (!token) {
-        return res.status(401).send({error: 'Token headers not present'})
-    }
-    const user = await User.findOne({token});
+});
 
-    if (!user) {
-        return res.status(401).send({error: 'Token incorrect'})
-    }
 
-    const trackHistory  = new TrackHistory({
-        user: user._id,
+router.post('/', auth, (req, res) => {
+
+    const trackHistory = new TrackHistory({
+        user: req.user._id,
         track: req.body.track,
         datetime: new Date().toISOString()
     });
