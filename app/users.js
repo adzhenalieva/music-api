@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
 
     try {
         await user.save();
-        return res.send({token: user.token})
+        return res.send({message: "success", user})
     } catch (error) {
         return res.status(400).send(error)
     }
