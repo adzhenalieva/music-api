@@ -1,6 +1,5 @@
 const express = require('express');
 const TrackHistory = require('../models/TrackHistory');
-const Album = require('../models/Album');
 const auth = require('../middleware/auth');
 
 const router = express.Router();
@@ -14,9 +13,9 @@ router.get('/', auth, async (req, res) => {
 });
 
 
-router.post('/', auth, (req, res) => {
+router.post('/', auth, async (req, res) => {
 
-    const trackHistory = new TrackHistory({
+    const trackHistory = await new TrackHistory({
         user: req.user._id,
         track: req.body.track,
         datetime: new Date().toISOString()

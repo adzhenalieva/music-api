@@ -11,6 +11,11 @@ const TrackSchema = new Schema({
         ref: 'Album',
         required: true
     },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     duration: {
         type: String, required: true
     },
@@ -19,6 +24,10 @@ const TrackSchema = new Schema({
     },
     link: {
         type: String, required: true
+    },
+    published: {
+        type: Boolean,
+        default: false
     }
 });
 

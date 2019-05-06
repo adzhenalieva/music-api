@@ -14,6 +14,15 @@ const AlbumSchema = new Schema({
     image: String,
     year: {
         type: Number, required: true
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    published: {
+        type: Boolean,
+        default: false
     }
 });
 

@@ -11,6 +11,15 @@ const ArtistSchema = new Schema({
     },
     image: {
         type: String
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    published: {
+        type: Boolean,
+        default: false
     }
 });
 
