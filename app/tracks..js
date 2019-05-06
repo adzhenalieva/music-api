@@ -47,7 +47,7 @@ router.get('/:id', (req, res) => {
         .catch(() => res.sendStatus(500));
 });
 
-router.post('/', auth, async (req, res) => {
+router.post('/', [auth,  permit('user')], async (req, res) => {
     const number = await Track.find({album: req.body.album});
     const track = await new Track({
         title: req.body.title,

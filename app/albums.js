@@ -68,7 +68,7 @@ router.get('/:id', (req, res) => {
 });
 
 
-router.post('/', auth, upload.single('image'), async (req, res) => {
+router.post('/', [auth, permit('user'), upload.single('image')], async (req, res) => {
     const albumData = req.body;
     if (req.file) {
         albumData.image = req.file.filename;
