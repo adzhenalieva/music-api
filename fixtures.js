@@ -27,14 +27,16 @@ const run = async () => {
 
     const artists = await Artist.create(
         {artist: 'Eminem', info: 'rapper', image: 'eminem.jpeg', user: users[1], published: true},
-        {artist: 'Usher', info: 'rnb', image: 'usher.jpeg', user: users[1], published: true}
+        {artist: 'Usher', info: 'rnb', image: 'usher.jpeg', user: users[1], published: true},
+        {artist: 'Mirbek Atabekov', info: 'rnb', image: 'mirbek.jpg', user: users[1], published: true}
     );
 
     const albums = await Album.create(
         {title: '8 mile', year: 2010, artist: artists[0]._id, image: 'eminemAlbum.jpeg', user: users[1], published: true},
         {title: 'Eminem show', year: 2008, artist: artists[0]._id, image: 'eminemAlbum2.jpeg', user: users[1], published: true},
         {title: 'Yeah', year: 2011, artist: artists[1]._id, image: 'usherAlbum.jpg', user: users[1], published: true},
-        {title: 'Usher show', year: 2008, artist: artists[1]._id, image: 'usherAlbum2.jpeg', user: users[1], published: true}
+        {title: 'Usher show', year: 2008, artist: artists[1]._id, image: 'usherAlbum2.jpeg', user: users[1], published: true},
+        {title: 'Muras', year: 2018, artist: artists[2]._id, image: 'mirbekAlbum.jpeg', user: users[1], published: true}
     );
 
     await Track.create(
@@ -45,7 +47,9 @@ const run = async () => {
         {title: 'Crash', album: albums[2]._id, duration: "3:52", number: 1, link: "https://www.youtube.com/embed/fp_qAAi-T0E", user: users[1], published: true},
         {title: 'Yeah', album: albums[2]._id, duration: "2:52", number: 2, link: "https://www.youtube.com/embed/GxBSyx85Kp8", user: users[1], published: true},
         {title: 'Without you', album: albums[3]._id, duration: "3:54", number: 1, link: "https://www.youtube.com/embed/jUe8uoKdHao", user: users[1], published: true},
-        {title: 'Burn', album: albums[3]._id, duration: "3:54", number: 2, link: "https://www.youtube.com/embed/t5XNWFw5HVw", user: users[1], published: true}
+        {title: 'Burn', album: albums[3]._id, duration: "3:54", number: 2, link: "https://www.youtube.com/embed/t5XNWFw5HVw", user: users[1], published: true},
+        {title: 'Muras', album: albums[4]._id, duration: "3:52", number: 1, link: "https://www.youtube.com/watch?v=7ALPIons9NU", user: users[1], published: true},
+        {title: 'Seni suiom', album: albums[4]._id, duration: "3:14", number: 2, link: "https://www.youtube.com/watch?v=kde1Vch0NZ8", user: users[1], published: true}
     );
 
 
