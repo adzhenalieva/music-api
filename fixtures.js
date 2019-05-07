@@ -28,7 +28,7 @@ const run = async () => {
     const artists = await Artist.create(
         {artist: 'Eminem', info: 'rapper', image: 'eminem.jpeg', user: users[1], published: true},
         {artist: 'Usher', info: 'rnb', image: 'usher.jpeg', user: users[1], published: true},
-        {artist: 'Mirbek Atabekov', info: 'rnb', image: 'mirbek.jpg', user: users[1], published: true}
+        {artist: 'Mirbek Atabekov', info: 'pop', image: 'mirbek.jpg', user: users[1], published: true}
     );
 
     const albums = await Album.create(
@@ -36,7 +36,7 @@ const run = async () => {
         {title: 'Eminem show', year: 2008, artist: artists[0]._id, image: 'eminemAlbum2.jpeg', user: users[1], published: true},
         {title: 'Yeah', year: 2011, artist: artists[1]._id, image: 'usherAlbum.jpg', user: users[1], published: true},
         {title: 'Usher show', year: 2008, artist: artists[1]._id, image: 'usherAlbum2.jpeg', user: users[1], published: true},
-        {title: 'Muras', year: 2018, artist: artists[2]._id, image: 'mirbekAlbum.jpeg', user: users[1], published: true}
+        {title: 'Muras', year: 2018, artist: artists[2]._id, image: 'mirbekAlbum.jpg', user: users[1], published: true}
     );
 
     await Track.create(

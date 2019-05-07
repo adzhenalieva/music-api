@@ -23,7 +23,7 @@ router.get('/', check, (req, res) => {
             ]
         }
     }
-    Track.find(criteria).populate('album')
+    Track.find(criteria).populate('album').sort({number: 1})
         .then(tracks => {
             res.send(tracks)
         }).catch(() => res.sendStatus(500))
