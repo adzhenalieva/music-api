@@ -47,7 +47,7 @@ router.get('/:id', (req, res) => {
         .catch(() => res.sendStatus(500));
 });
 
-router.post('/', [auth,  permit('user')], async (req, res) => {
+router.post('/', auth, async (req, res) => {
     const number = await Track.find({album: req.body.album});
     const track = await new Track({
         title: req.body.title,
@@ -59,7 +59,7 @@ router.post('/', [auth,  permit('user')], async (req, res) => {
     });
     track.save()
         .then(result => res.send(result))
-        .catch(error => res.status(500).send(error));
+        .catch(error => res.status(400).send(error));
 });
 
 
@@ -79,7 +79,7 @@ router.put('/:id/toggle_published', [auth, permit('admin')], async (req, res) =>
 router.delete('/:id/delete', [auth, permit('admin')], (req, res) => {
     Track.findByIdAndDelete(req.params.id)
         .then(() => res.send({message: 'success'}))
-        .catch(() => res.sendStatus(500).send(error))
+        .catch(error => res.status(500).send(error))
 });
 
 module.exports = router;

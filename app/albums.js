@@ -68,7 +68,7 @@ router.get('/:id', (req, res) => {
 });
 
 
-router.post('/', [auth, permit('user'), upload.single('image')], async (req, res) => {
+router.post('/', auth, upload.single('image'), async (req, res) => {
     const albumData = req.body;
     if (req.file) {
         albumData.image = req.file.filename;
@@ -95,7 +95,7 @@ router.put('/:id/toggle_published', [auth, permit('admin')], async (req, res) =>
 router.delete('/:id/delete', [auth, permit('admin')], async (req, res) => {
     Album.findByIdAndDelete(req.params.id)
         .then(() => res.send({message: 'success'}))
-        .catch(() => res.sendStatus(500).send(error))
+        .catch(error => res.status(500).send(error))
 });
 
 
