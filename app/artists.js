@@ -9,6 +9,8 @@ const permit = require('../middleware/permit');
 const check = require('../middleware/check');
 
 const Artists = require('../models/Artist');
+const Albums = require('../models/Album');
+const Tracks = require('../models/Track');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -33,7 +35,7 @@ router.get('/', check, (req, res) => {
             ]
         }
     }
-    if(req.user && req.user.role === 'admin'){
+    if (req.user && req.user.role === 'admin') {
         criteria = null;
     }
     Artists.find(criteria).sort({artist: 1})
@@ -72,15 +74,24 @@ router.put('/:id/toggle_published', [auth, permit('admin')], async (req, res) =>
     }
     artist.published = !artist.published;
 
-   await  artist.save()
+    await artist.save()
         .then(() => res.send({message: 'success'}))
         .catch(() => res.sendStatus(500).send(error))
 });
 
-router.delete('/:id/delete',  [auth, permit('admin')], async (req, res) => {
-    Artists.findByIdAndDelete(req.params.id)
-        .then(() => res.send({message: 'success'}))
-        .catch(error => res.status(500).send(error))
+router.delete('/:id/delete', [auth, permit('admin')], async (req, res) => {
+    await Artists.findByIdAndDelete(req.params.id);
+
+    await Albums.find({artist: req.params.id}).then(result => {
+        result.forEach((album) => {
+            Tracks.deleteMany({album: album._id})
+                .catch(error => res.status(400).send(error))
+        })
+    });
+    await Albums.deleteMany({artist: req.params.id});
+
+    res.send('success');
+
 });
 
 module.exports = router;

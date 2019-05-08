@@ -4,6 +4,7 @@ const path = require('path');
 const config = require('../config');
 const nanoid = require('nanoid');
 const Album = require('../models/Album');
+const Track = require('../models/Track');
 const auth = require('../middleware/auth');
 const permit = require('../middleware/permit');
 const check = require('../middleware/check');
@@ -93,9 +94,10 @@ router.put('/:id/toggle_published', [auth, permit('admin')], async (req, res) =>
 });
 
 router.delete('/:id/delete', [auth, permit('admin')], async (req, res) => {
-    Album.findByIdAndDelete(req.params.id)
-        .then(() => res.send({message: 'success'}))
-        .catch(error => res.status(500).send(error))
+    await Album.findByIdAndDelete(req.params.id);
+    await Track.deleteMany({album: req.params.id});
+
+    res.send('success');
 });
 
 
