@@ -20,8 +20,8 @@ const run = async () => {
         await collection.drop();
     }
     const users = await User.create(
-        {username: 'admin', password: '123', role: 'admin', token: nanoid()},
-        {username: 'leo', password: '123', role: 'user', token: nanoid()}
+        {username: 'admin', password: '123', role: 'admin', token: nanoid(), displayName: 'admin', avatar: 'admin.jpeg'},
+        {username: 'leo', password: '123', role: 'user', token: nanoid(), displayName: 'Leo', avatar: 'leo.jpeg'}
 
     );
 
